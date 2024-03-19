@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question h2 {
+      margin-bottom: 10px;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .result {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-container">
+  <div class="question" id="question1">
+    <h2>Question 1</h2>
+    <p>What is the capital of France?</p>
+    <div class="options">
+      <label><input type="radio" name="q1" value="paris"> Paris</label>
+      <label><input type="radio" name="q1" value="london"> London</label>
+      <label><input type="radio" name="q1" value="berlin"> Berlin</label>
+      <label><input type="radio" name="q1" value="madrid"> Madrid</label>
+    </div>
+  </div>
+
+  <div class="question" id="question2">
+    <h2>Question 2</h2>
+    <p>What is the largest planet in our solar system?</p>
+    <div class="options">
+      <label><input type="radio" name="q2" value="mercury"> Mercury</label>
+      <label><input type="radio" name="q2" value="venus"> Venus</label>
+      <label><input type="radio" name="q2" value="earth"> Earth</label>
+      <label><input type="radio" name="q2" value="jupiter"> Jupiter</label>
+    </div>
+  </div>
+
+  <div class="question" id="milliblom">
+    <h2>Hvaða planta?</h2>
+    <p>Á milli blerg og plerg er hvaða planta?</p>
+      <label><input type="text" name="milliplanta" value="milliplanta" id="milliplanta"></label>
+  </div>
+  <div class="question" id="question3">
+    <h2>Question 2</h2>
+    <p>What is the largest ?</p>
+      <label><input type="text" name="q3" value="q3ans" id="q3q"></label>
+  </div>
+  <div class="question" id="question3">
+    <h2>Question 2</h2>
+    <p>What is the largest ?</p>
+      <label><input type="text" name="q3" value="q3ans" id="q3q"></label>
+  </div>
+  <div class="question" id="question3">
+    <h2>Question 2</h2>
+    <p>What is the largest ?</p>
+      <label><input type="text" name="q3" value="q3ans" id="q3q"></label>
+  </div>
+
+  <button onclick="showResults()">Submit</button>
+
+  <div class="result" id="result">
+    <h2>Results</h2>
+    <p id="score"></p>
+  </div>
+</div>
+
+<script>
+  function strMaker (a,b) { return a+" "+b }
+  function normalizeInput(i){
+    console.log(i, "normailezze it")
+    i = i.replace(/[^a-zþæöðáéíóúýA-ZÞÆÖÐÁÉÍÚÓÝ ]/g, "") // needs more séríslenskir stafir
+    i = i.replace("  ", " ")
+    i = i.toLocaleLowerCase()
+    i = i.trim()
+    innlist = i.split(" ")
+    innlist = innlist.filter((i) => i!=="")
+    final = innlist.reduce(strMaker, "")
+    return i
+  }
+  function showResults() {
+    var score = 0;
+
+    // Check answers
+    if (document.querySelector('input[name="q1"]:checked').value === 'paris') {
+      score++;
+    }
+    if (document.querySelector('input[name="q2"]:checked').value === 'jupiter') {
+      score++;
+    }
+    if (normalizeInput(document.getElementById('q3q').value) === atob("dGVzdA==")) {
+      console.log('wooo')
+    }
+    if (normalizeInput(document.getElementById('milliplanta').value) === atob("dGVzdA==")) {
+      console.log('wooo')
+    }
+
+    // Display results
+    var resultContainer = document.getElementById('result');
+    var scoreDisplay = document.getElementById('score');
+    scoreDisplay.textContent = 'You scored ' + score + ' out of 2.';
+    resultContainer.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
+15m
+
+
